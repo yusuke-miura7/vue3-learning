@@ -10,6 +10,8 @@ const upperCase = () =>{
 
 upperCase();
 
+const link = 'https://google.com';
+
 </script>
 
 <!-- html部分 -->
@@ -19,22 +21,17 @@ upperCase();
     <p>{{ message }}</p>
     <div v-text="message"></div>
     <div v-html="message"></div>
-    <!-- <h1> -->
+  <div>
+    <a v-bind:href="link">google</a>
+    <p class="active">v-bindの設定方法の確認</p>
+  </div>
   </div>
 </template>
 
 <!-- css部分 -->
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.active {
+  color: red;
+  font-weight: 900;
 }
 </style>
