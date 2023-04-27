@@ -25,6 +25,14 @@ const clickdButton = () =>{
   console.log("ダブルクリックされました");
 }
 
+const clickColor = (event) =>{
+  event.target.style.backgroundColor = 'red';
+}
+
+const send = () =>{
+  console.log('send');
+}
+
 const users = [
   { id: 1, name: 'John Doe', email: 'john@test.com', admin: true },
   { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
@@ -70,9 +78,17 @@ const users = [
     </div>
     </div>
     
+    <!-- v-on:clickの確認 -->
     <button @click="increment">在庫を増やす</button>
     <button @dblclick="clickdButton">ダブルクリック</button>
-  
+    <button @click="clickColor">赤色に変更</button>
+
+    <!-- ページのリロードを防ぐ -->
+    <form @submit.prevent="send">
+      <button>送信</button>
+    </form>
+
+    
   </div>
 </template>
 
