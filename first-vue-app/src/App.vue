@@ -1,7 +1,6 @@
 <!-- JavaScript部分 -->
 <script setup>
-import { ref } from 'vue';
-import { reactive} from 'vue';
+import { ref, reactive, computed } from 'vue';
 
 // 双方向バイディング一つ目の書き方
 const message = ref('Hello world');
@@ -48,6 +47,16 @@ const users = [
   { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
   { id: 3, name: 'Kevin MacDonald', email: 'kevin@test.com', admin: false },
 ];
+
+// Computedプロパティの確認
+const user = reactive({
+  firstName: 'John',
+  lastName: 'Doe',
+});
+
+const fullName = computed( () =>`${user.firstName}${user.lastName}`);
+
+const adminUsers = computed(() => users.filter((user) => user.admin === true));
 
 </script>
 
@@ -103,10 +112,21 @@ const users = [
     <p>{{ message }}</p>
     <input v-model="message" />
     <button @click="clickButton">Click</button>
-
+    
+    <!-- 二つ目の書き方 -->
     <p>{{ form.message }}</p>
     <input v-model="form.message" />
-    <button @click="clickButton2">Click2</button>
+    <button @click="clickButton2">Click2</button><br>
+
+    <!-- Computedプロパティの確認 -->
+    <h2>fullName:{{ user.firstName }} {{ user.lastName }}</h2>
+    <h3>computedプロパティの確認</h3>
+    <h3>fullName:{{ fullName }}</h3>
+
+    <h3>computedプロパティの確認2(adminのフィルター)</h3>
+    <div v-for="user in adminUsers" :key="user.id">
+      {{ user.id }} {{ user.name }} {{ user.email }}</div>
+
   </div>
 </template>
 
