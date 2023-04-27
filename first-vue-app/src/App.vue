@@ -1,15 +1,23 @@
 <!-- JavaScript部分 -->
 <script setup>
 import { ref } from 'vue';
-console.log('Hello World');
-let message = 'Hello world'
-// const message = '<h2>Hello world</h2>'
+import { reactive} from 'vue';
 
-const upperCase = () =>{
-  message = message.toUpperCase();
+// 双方向バイディング一つ目の書き方
+const message = ref('Hello world');
+
+const clickButton = () =>{
+  console.log(message.value);
 };
 
-upperCase();
+// 双方向バイディング二つ目の書き方
+const form = reactive({
+  message: 'Hello World',
+});
+
+const clickButton2 = () =>{
+  console.log(form.message);
+};
 
 const link = 'https://google.com';
 
@@ -91,7 +99,14 @@ const users = [
       <button @keyup.right="send">rightで送信</button>
     </form>
 
+    <!-- v-modelで双方向バイディング(reactivity持たせる必要あり) -->
+    <p>{{ message }}</p>
+    <input v-model="message" />
+    <button @click="clickButton">Click</button>
 
+    <p>{{ form.message }}</p>
+    <input v-model="form.message" />
+    <button @click="clickButton2">Click2</button>
   </div>
 </template>
 
