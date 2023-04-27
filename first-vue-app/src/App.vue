@@ -21,6 +21,10 @@ const increment=() =>{
   stock+=1;
 }
 
+const clickdButton = () =>{
+  console.log("ダブルクリックされました");
+}
+
 const users = [
   { id: 1, name: 'John Doe', email: 'john@test.com', admin: true },
   { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
@@ -59,9 +63,15 @@ const users = [
     <p v-for="user in users" :key="user.id">{{ user.id }}:{{ user.name }}({{ user.email }})</p>
     <p v-for="(user, index) in users" :key="user">
     {{ index }}-{{ user.id }}{{ user.name }}{{ user.email }}</p>
+    <div v-for="user in users" :key="user.id">
+      <div v-if="!user.admin">
+        {{ user.name }}
+      </div>
+    </div>
     </div>
     
     <button @click="increment">在庫を増やす</button>
+    <button @dblclick="clickdButton">ダブルクリック</button>
   
   </div>
 </template>
