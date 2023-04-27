@@ -42,11 +42,11 @@ const send = () =>{
   console.log('send');
 }
 
-const users = [
+const users = reactive([
   { id: 1, name: 'John Doe', email: 'john@test.com', admin: true },
   { id: 2, name: 'Jane Doe', email: 'jane@example.com', admin: false },
   { id: 3, name: 'Kevin MacDonald', email: 'kevin@test.com', admin: false },
-];
+]);
 
 // Computedプロパティの確認
 const user = reactive({
@@ -58,6 +58,12 @@ const fullName = computed( () =>`${user.firstName}${user.lastName}`);
 
 const adminUsers = computed(() => users.filter((user) => user.admin === true));
 
+// adminを反転させる
+const toggleAlladmin = () =>{
+  for(const user of users){
+    user.admin = !user.admin;
+  }
+}
 </script>
 
 <!-- html部分 -->
@@ -125,7 +131,11 @@ const adminUsers = computed(() => users.filter((user) => user.admin === true));
 
     <h3>computedプロパティの確認2(adminのフィルター)</h3>
     <div v-for="user in adminUsers" :key="user.id">
-      {{ user.id }} {{ user.name }} {{ user.email }}</div>
+      {{ user.id }} {{ user.name }} {{ user.email }}
+    </div>
+
+    <h3>computedプロパティの確認3(自動計算)</h3>
+    <button @click="toggleAlladmin">toggleAlladmin</button>
 
   </div>
 </template>
