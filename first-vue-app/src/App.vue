@@ -1,6 +1,6 @@
 <!-- JavaScript部分 -->
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 
 // 双方向バイディング一つ目の書き方
 const message = ref('Hello world');
@@ -64,6 +64,25 @@ const toggleAlladmin = () =>{
     user.admin = !user.admin;
   }
 }
+
+// watcherの確認(ref)
+const count = ref(0);
+
+watch(count,(count, previousCount) =>{
+  console.log('count:', count);
+  console.log('previousCount:', previousCount);
+})
+
+// watcherの確認(reactive)
+const state = reactive({
+  count: 0,
+});
+
+watch(() => state.count, (count, previousCount) => {
+  console.log('count:', count);
+  console.log('previousCount:', previousCount);
+});
+
 </script>
 
 <!-- html部分 -->
@@ -136,6 +155,11 @@ const toggleAlladmin = () =>{
 
     <h3>computedプロパティの確認3(自動計算)</h3>
     <button @click="toggleAlladmin">toggleAlladmin</button>
+
+    <!-- watcherの確認 -->
+    <h3>watcherの確認</h3>
+    <button @click="count++">Count:{{ count }}</button>
+    <button @click="state.count++">Count:{{ state.count }}</button>
 
   </div>
 </template>
