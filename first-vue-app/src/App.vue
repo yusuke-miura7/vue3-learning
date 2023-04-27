@@ -76,18 +76,11 @@ watch(count,(count, previousCount) =>{
 // watcherの確認(reactive)
 const state = reactive({
   count: 0,
-  message: '',
 });
 
-watch(() => state.count, (newCount, oldCount) => {
-  console.log('newCount:', newCount);
-  console.log('oldCount:', oldCount);
-
-  if(newCount > oldCount){
-    state.message = '増加しました';
-  }else if(newCount < oldCount){
-    state.message = '減少しました';
-  }
+watch(() => state.count, (count, previousCount) => {
+  console.log('count:', count);
+  console.log('previousCount:', previousCount);
 });
 
 </script>
@@ -165,11 +158,8 @@ watch(() => state.count, (newCount, oldCount) => {
 
     <!-- watcherの確認 -->
     <h3>watcherの確認</h3>
-    <button @click="count++">Count++:{{ count }}</button>
-    <button @click="count--">Count--:{{ count }}</button>
-    <button @click="state.count++">state.count++:{{ state.count }}</button>
-    <button @click="state.count--">state.count--:{{ state.count }}</button>
-    <p>message:{{ state.message }}</p>
+    <button @click="count++">Count:{{ count }}</button>
+    <button @click="state.count++">Count:{{ state.count }}</button>
 
   </div>
 </template>
