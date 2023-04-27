@@ -1,5 +1,6 @@
 <!-- JavaScript部分 -->
 <script setup>
+import { ref } from 'vue';
 console.log('Hello World');
 let message = 'Hello world'
 // const message = '<h2>Hello world</h2>'
@@ -15,10 +16,11 @@ const link = 'https://google.com';
 const isActive = true;
 const isBlack = true;
 
-let stock = 5;
+//Reactivaityを持たせる
+const stock = ref(5);
 const increment=() =>{
   console.log(stock);
-  stock+=1;
+  stock.value+=1;
 }
 
 const clickdButton = () =>{
@@ -85,10 +87,11 @@ const users = [
 
     <!-- ページのリロードを防ぐ -->
     <form @submit.prevent="send">
-      <button>送信</button>
+      <!-- <button>送信</button> -->
+      <button @keyup.right="send">rightで送信</button>
     </form>
 
-    
+
   </div>
 </template>
 
