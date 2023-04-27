@@ -12,6 +12,9 @@ upperCase();
 
 const link = 'https://google.com';
 
+const isActive = true;
+const isBlack = true;
+
 </script>
 
 <!-- html部分 -->
@@ -23,7 +26,14 @@ const link = 'https://google.com';
     <div v-html="message"></div>
   <div>
     <a v-bind:href="link">google</a>
+    <!-- v-bindの確認 -->
     <p class="active">v-bindの設定方法の確認</p>
+    <!-- 動的なクラス適用 -->
+    <p class="{active: isActive }">v-bindの設定方法の確認</p>
+    <!-- 複数クラスの適用 -->
+    <p class="underLine" :class="{active:isActive, back:isBlack}">
+    v-bindの設定方法の確認
+    </p>
   </div>
   </div>
 </template>
@@ -33,5 +43,12 @@ const link = 'https://google.com';
 .active {
   color: red;
   font-weight: 900;
+}
+
+.underLine{
+  text-decoration: underline;
+}
+.back{
+  background-color: black;
 }
 </style>
